@@ -1,3 +1,4 @@
+// src/IMCApp.java
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,11 +10,18 @@ public class IMCApp extends JFrame {
     private JTextField heightField;
     private JTextArea resultArea;
 
-    public IMCApp() {
+    public IMCApp(JFrame mainFrame) {
         setTitle("IMC HOSPITAL");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(4, 2));
+
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                mainFrame.setVisible(true);
+            }
+        });
 
         JLabel weightLabel = new JLabel("Peso en kilogramos:");
         weightField = new JTextField();
@@ -73,7 +81,7 @@ public class IMCApp extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new IMCApp().setVisible(true);
+                new IMCApp(null).setVisible(true);
             }
         });
     }
