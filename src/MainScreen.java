@@ -25,7 +25,7 @@ public class MainScreen extends JFrame {
         bancoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new BancoMexicano(MainScreen.this);
+                new BancoMexicanoGUI(MainScreen.this);
                 setVisible(false);
             }
         });

@@ -97,6 +97,10 @@ public class BancoMexicanoGUI {
     }
 
     private double getSaldo() {
+        if (connection == null) {
+            System.err.println("No database connection.");
+            return 0.0;
+        }
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT saldo FROM cuentas WHERE id = " + cuentaId);
@@ -147,6 +151,10 @@ public class BancoMexicanoGUI {
     }
 
     private void updateSaldo(double cantidad, String tipo) {
+        if (connection == null) {
+            System.err.println("No database connection.");
+            return;
+        }
         try {
             Statement stmt = connection.createStatement();
             stmt.executeUpdate("UPDATE cuentas SET saldo = saldo + " + cantidad + " WHERE id = " + cuentaId);
@@ -161,7 +169,7 @@ public class BancoMexicanoGUI {
     }
 
     private JFormattedTextField createCurrencyField() {
-        NumberFormat format = NumberFormat.getCurrencyInstance();
+        NumberFormat format = NumberFormat.getNumberInstance();
         NumberFormatter formatter = new NumberFormatter(format);
         formatter.setValueClass(Double.class);
         formatter.setMinimum(0.0);
