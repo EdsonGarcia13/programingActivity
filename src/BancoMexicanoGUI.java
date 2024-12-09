@@ -61,6 +61,7 @@ public class BancoMexicanoGUI {
         salirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "Cerrando sesión, vuelva pronto...");
                 System.exit(0);
             }
         });
